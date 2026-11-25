@@ -1,0 +1,21 @@
+name: Basic CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Run basic validation check
+        run: |
+          echo "Running CI checks on commit ${{ github.sha }}..."
+          test -f index.html && echo "index.html verified."
+
+      - name: Simulate deployment stage
+        run: |
+          echo "Artifact ready for deployment stage."
